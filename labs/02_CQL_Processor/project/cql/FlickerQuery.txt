@@ -1,0 +1,18 @@
+ <query id="FlickerQuery"> 
+	<![CDATA[             	
+  SELECT 
+	flicker.meterId as meterId,
+	flicker.flickerTime as flickerTime
+  FROM MeterStateInputChannel MATCH_RECOGNIZE 
+  (
+  PARTITION BY meterId					
+  MEASURES
+	PowerDown.meterId AS meterId,
+	PowerDown.statusTime as flickerTime			
+  PATTERN (PowerDown PowerUp)
+	DEFINE
+	PowerDown AS state = 'POWER_DOWN',
+	PowerUp AS state = 'POWER_UP'					
+  ) AS flicker
+	]]>
+ </query>
