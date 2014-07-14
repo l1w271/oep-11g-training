@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wlevs:config xmlns:wlevs="http://www.bea.com/ns/wlevs/config/application">
+    <processor>
+        <name>TemperatureProcessor</name>
+        <rules>
+            <query id="TemperatureAlertQuery"> 
+        	<![CDATA[ 
+            SELECT * 
+            FROM TemperatureChannel [now]  
+            WHERE temperature > 100.0          
+            ]]>
+            </query>            
+        </rules>
+    </processor>
+</wlevs:config>
+
